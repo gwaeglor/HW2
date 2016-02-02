@@ -5,7 +5,7 @@ y_guessed = y == guess_y
 
 case
 when (x_guessed && y_guessed)
-  puts "Точка найдена!"
+  puts 'Точка найдена!'
 when (x_guessed && !y_guessed)
   puts 'х координата верна, y нет'
 when (y_guessed && !x_guessed)
