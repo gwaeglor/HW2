@@ -14,7 +14,7 @@ class Target
   end
 
   def hit?(x, y)
-    (x - centre_point[0])**2 + (y - centre_point[1])**2 <= (diameter / 2.0)**2
+    (x - @centre_point[0])**2 + (y - @centre_point[1])**2 <= (@diameter / 2.0)**2
   end
 end
 
