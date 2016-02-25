@@ -1,9 +1,13 @@
 class Developer
   MAX_TASKS = 10
+  GROUP = :developers
+
+  attr_reader :name, :task_list, :group
 
   def initialize(name)
     @name = name
     @task_list = []
+    @group = self.class::GROUP
   end
 
   def add_task(task)

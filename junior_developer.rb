@@ -2,6 +2,7 @@ require_relative 'developer'
 
 class JuniorDeveloper < Developer
   MAX_TASKS = 5
+  GROUP = :juniors
 
   def add_task(task)
     begin
