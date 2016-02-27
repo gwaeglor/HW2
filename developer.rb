@@ -1,24 +1,20 @@
 class Developer
   MAX_TASKS = 10
-  GROUP = :developers
 
-  attr_reader :name, :task_list, :group
+  attr_reader :name, :task_list
 
   def initialize(name)
     @name = name
     @task_list = []
-    @group = self.class::GROUP
   end
 
   def add_task(task)
-    begin
-    raise ArgumentError unless @task_list.size < max_tasks
-    rescue ArgumentError
-      'Слишком много работы!'
-    else
-      @task_list.push task
-      %Q{#{@name}: добавлена задача "#{task}". Всего в списке задач: #{@task_list.size}}
-    end
+    fail ArgumentError unless @task_list.size < max_tasks
+  rescue ArgumentError
+    'Слишком много работы!'
+  else
+    @task_list.push task
+    %(#{@name}: добавлена задача "#{task}". Всего в списке задач: #{@task_list.size})
   end
 
   def tasks
@@ -26,13 +22,11 @@ class Developer
   end
 
   def work!
-    begin
-      raise ArgumentError if @task_list.empty?
-    rescue ArgumentError
-      'Нечего делать!'
-    else
-      %Q{#{@name}: выполнена задача "#{@task_list.shift}". Осталось задач: #{@task_list.size}}
-    end
+    fail ArgumentError if @task_list.empty?
+  rescue ArgumentError
+    'Нечего делать!'
+  else
+    %(#{@name}: выполнена задача "#{@task_list.shift}". Осталось задач: #{@task_list.size})
   end
 
   def can_add_task?
@@ -45,18 +39,22 @@ class Developer
 
   def status
     case
-      when !can_work?
-        'свободен'
-      when can_add_task? && can_work?
-        'работаю'
-      else
-        'занят'
+    when !can_work?
+      'свободен'
+    when can_add_task? && can_work?
+      'работаю'
+    else
+      'занят'
     end
   end
 
+  def group
+    :developers
+  end
+
   private
+
   def max_tasks
     self.class::MAX_TASKS
   end
-
 end
