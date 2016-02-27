@@ -35,15 +35,17 @@ class Team
 
   def add_task(task)
     available_staff = @team.select(&:can_add_task?)
-    available_staff.sort_by! { |person| [person.task_list.count, @priority.index(person.group)] }
-    fail ArgumentError if available_staff.empty?
-  rescue ArgumentError
-    'Все заняты!'
-  else
-    assignee = available_staff.first
-    assignee.add_task(task)
-    callback = @notification[assignee.group.to_s.chop.to_sym]
-    callback.call(assignee, task) if callback
+    begin
+      fail ArgumentError if available_staff.empty?
+    rescue ArgumentError
+      puts 'Все заняты!'
+    else
+      available_staff.sort_by! { |person| [person.task_list.count, @priority.index(person.group)] }
+      assignee = available_staff.first
+      assignee.add_task(task)
+      callback = @notification[assignee.group.to_s.chop.to_sym]
+      callback.call(assignee, task) if callback
+    end
   end
 
   def seniors
@@ -77,4 +79,3 @@ class Team
     @team += names.map { |name| STAFF[group].new(name) }
   end
 end
-
