@@ -34,35 +34,32 @@ class Team
   end
 
   def add_task(task, **options)
-    options = options
-    begin
-      available_staff = @team.select(&:can_add_task?)
-      fail ArgumentError if available_staff.empty?
-      case
-      when options.keys.sort == [:complexity, :to]
-        available_staff.select! do |person|
-          person.class == STAFF[options[:complexity]] && person.name == options[:to]
-        end
-      when options[:complexity]
-        available_staff.sort_by! { |person| person.task_list.count }
-        available_staff.select! { |person| person.class == STAFF[options[:complexity]] }
-      when options[:to]
-        available_staff.sort_by! { |person| [person.task_list.count, @priority.index(person.group)] }
-        available_staff.select! { |person| person.name == options[:to] }
-      else
-        available_staff.sort_by! { |person| [person.task_list.count, @priority.index(person.group)] }
+    available_staff = @team.select(&:can_add_task?)
+    fail ArgumentError if available_staff.empty?
+    case
+    when options.keys.sort == [:complexity, :to]
+      available_staff.select! do |person|
+        person.class == STAFF[options[:complexity]] && person.name == options[:to]
       end
-      fail NameError if available_staff.empty?
-    rescue ArgumentError
-      'Все заняты!'
-    rescue NameError
-      'Не найден!'
+    when options[:complexity]
+      available_staff.sort_by! { |person| person.task_list.count }
+      available_staff.select! { |person| person.class == STAFF[options[:complexity]] }
+    when options[:to]
+      available_staff.sort_by! { |person| [person.task_list.count, @priority.index(person.group)] }
+      available_staff.select! { |person| person.name == options[:to] }
     else
-      assignee = available_staff.first
-      assignee.add_task(task)
-      callback = @notification[assignee.group.to_s.chop.to_sym]
-      callback.call(assignee, task) if callback
+      available_staff.sort_by! { |person| [person.task_list.count, @priority.index(person.group)] }
     end
+    fail NameError if available_staff.empty?
+  rescue ArgumentError
+    'Все заняты!'
+  rescue NameError
+    'Не найден!'
+  else
+    assignee = available_staff.first
+    assignee.add_task(task)
+    callback = @notification[assignee.group.to_s.chop.to_sym]
+    callback.call(assignee, task) if callback
   end
 
   def seniors
