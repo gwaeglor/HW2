@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OnlinePetition</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="col-md-12 well sidebar-nav">
+  <%= render partial: "header" %>
+</div>
+
+<div class="col-md-12">
+  <div class="col-md-8">
+    <%= yield %>
+  </div>
+
+  <div class="col-md-4">
+    <%= render partial: "links_menu" %>
+  </div>
+</div>
+<div class="col-md-12">
+  <%= render partial: "footer" %>
+</div>
+</body>
+</html>

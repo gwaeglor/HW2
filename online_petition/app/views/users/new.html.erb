@@ -1,0 +1,41 @@
+<div class="col-md-6">
+
+  <h1>Регистрация</h1>
+
+  <%= form_for :user, url: users_path  do |f| %>
+      <% if @user.errors.any? %>
+          <% @user.errors.full_messages.each do |message| %>
+              <div class="label label-danger">
+                <%=  message %>
+              </div>
+          <% end %>
+      <% end %>
+
+      <div class="form-group">
+        <%=  f.label :email, 'Email' %>
+        <%=  f.text_field :email, class: "form-control"  %>
+      </div>
+
+      <div class="form-group">
+        <%=  f.label :first_name, 'Имя' %>
+        <%=  f.text_field :first_name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%=  f.label :last_name, 'Фамилия' %>
+        <%=  f.text_field :last_name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'Пароль'   %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%=  f.label :password_confirmation, 'Подтверждение пароля' %>
+        <%=  f.password_field :password_confirmation, class: "form-control"%>
+      </div>
+
+      <%= f.submit 'Зарегистрироваться', name: 'submit', class: "btn btn-lg btn-primary" %>
+<% end %>
+</div>

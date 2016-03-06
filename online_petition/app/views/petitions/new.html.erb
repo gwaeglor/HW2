@@ -1,0 +1,30 @@
+<h1> Новая Петиция </h1>
+
+    <% flash.each do |name, msg| %>
+        <div class="label label-danger"><%= msg %></div>
+    <% end %>
+
+  <%= form_for :petition, url: petitions_path  do |f| %>
+
+    <% if @petition.errors.any? %>
+        <% @petition.errors.full_messages.each do |message| %>
+            <div class="label label-danger">
+              <%=  message %>
+            </div>
+        <% end %>
+    <% end %>
+
+      <div class="form-group">
+        <%= f.label :title, 'Название' %><br>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :text, 'Описание' %><br>
+        <%= f.text_area :text %>
+      </div>
+
+      <%= f.submit 'Создать', :name => 'submit', class: "btn btn-lg btn-success" %>
+
+  <% end %>
+
