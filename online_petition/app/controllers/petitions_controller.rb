@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :edit, :update]
+  before_filter :authorize, only: [:new, :create, :edit, :update, :upvote]
   before_filter :author, only: [:edit, :update]
 
   def index
@@ -51,9 +51,15 @@ class PetitionsController < ApplicationController
     end
   end
 
+  def upvote
+    @petition = Petition.find(params[:id])
+    @petition.votes.create.save
+    redirect_to @petition, notice: 'Спасибо. Ваш голос был учтен!'
+  end
+
   private
 
   def petition_params
-    params.require(:petition).permit(:title, :text)
+    params.require(:petition).permit(:title, :text) if params[:petition]
   end
 end
