@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'petitions#index_last'
 
   get 'signup', to: 'users#new', as: 'signup'
@@ -10,8 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :petitions do
     member do
-      post 'upvote'
+      post 'upvote', to: 'petitions#upvote', as: 'upvote'
     end
   end
-
 end

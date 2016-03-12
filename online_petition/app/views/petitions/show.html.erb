@@ -1,4 +1,10 @@
 <div class="col-md-6">
+  <div>
+    <% flash.each do |name, msg| %>
+        <%= msg %>
+    <% end %>
+  </div>
+
   <h1>Петиция</h1>
 
   <%= form_for :petition, url: petitions_path  do |f| %>
@@ -9,8 +15,12 @@
       <div><%= @petition.text %></div>
       <br>
       <b>Голосов: <%= @petition.votes.count %></b>
-      <%= button_to 'Поддержать', upvote_petition_path(@petition), method: :post %>
+
+      <% if can_vote? %>
+        <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post %>
+      <% end %>
       <br>
-</div>
+
+      </div>
 <% end %>
 

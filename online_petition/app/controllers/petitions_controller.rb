@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :edit, :update, :upvote]
+  before_filter :authorize, only: [:new, :create, :update, :upvote]
   before_filter :author, only: [:edit, :update]
 
   def index
@@ -53,9 +53,9 @@ class PetitionsController < ApplicationController
 
   def upvote
     @petition = Petition.find(params[:id])
-    @petition.votes.create.save
-    redirect_to @petition, notice: 'Спасибо. Ваш голос был учтен!'
-  end
+    @petition.votes.create(user_id: current_user.id, petition_id: @petition.id).save
+    redirect_to :back, notice: 'Спасибо. Ваш голос был учтен!'
+    end
 
   private
 
