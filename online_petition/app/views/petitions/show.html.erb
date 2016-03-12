@@ -17,7 +17,10 @@
       <b>Голосов: <%= @petition.votes.count %></b>
 
       <% if can_vote? %>
-        <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post %>
+        <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post, class: "btn btn-primary btn-large" %>
+          <% else %>
+          <br>
+          Вы уже поддержали данную петицию
       <% end %>
       <br>
 
