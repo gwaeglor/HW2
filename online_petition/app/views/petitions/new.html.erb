@@ -1,10 +1,10 @@
-<h1> Новая Петиция </h1>
+<h1> Новая петиция </h1>
 
     <% flash.each do |name, msg| %>
         <div class="alert alert-success"><%= msg %></div>
     <% end %>
 
-
+<!-- BEGIN new petition form -->
   <%= form_for :petition, url: petitions_path  do |f| %>
 
     <% if @petition.errors.any? %>
@@ -27,3 +27,4 @@
       <%= f.submit 'Создать', :name => 'submit', class: "btn btn-lg btn-success" %>
 
   <% end %>
+<!-- END new petition form -->

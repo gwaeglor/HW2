@@ -1,21 +1,21 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-success"><%= msg %></div>
+<% end %>
 
-    <% flash.each do |name, msg| %>
-        <div class="alert alert-success"><%= msg %></div>
-    <% end %>
+<h1>Петиция</h1>
 
-
-  <h1>Петиция</h1>
-
-  <div>
+<div>
+  <!-- BEGIN petition petition block -->
   <%= form_for :petition, url: petitions_path  do |f| %>
     <h3><%= @petition.title %></h3>
       <br>
       <%= @petition.updated_at.strftime("%d/%m/%Y %I:%M") %>
-
       <div><%= @petition.text %></div>
       <br>
+  <!-- END petition block -->
+  <!-- BEGIN votes block -->
       <b>Голосов: <%= @petition.votes.count %></b>
-        <br>
+      <br>
       <% case  %>
       <% when current_user && can_vote? %>
         <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post, class: "btn btn-primary btn-large" %>
@@ -23,7 +23,7 @@
         <% when current_user && !can_vote?  %>
             Вы уже поддержали данную петицию
       <% end %>
+  <!-- BEGIN votes block -->
       <br>
-<% end %>
-
-  </div>
+  <% end %>
+</div>

@@ -1,10 +1,13 @@
   <div class="col-md-12">
+    <!-- BEGIN logo -->
     <div class="col-md-9">
      <span class="logo">
        <%= link_to 'Онлайн петиции нашего района', root_path%>
      </span>
     </div>
+    <!-- END logo -->
 
+    <!-- BEGIN user info -->
     <div class="col-md-3 user-options">
       <span>
     <% if current_user %>
@@ -14,4 +17,5 @@
       <% end %>
         </span>
      </div>
+    <!-- END user info -->
   </div>

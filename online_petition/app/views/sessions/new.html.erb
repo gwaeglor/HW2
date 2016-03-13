@@ -4,6 +4,7 @@
     <% end %>
 
   <h1>Вход</h1>
+<!-- BEGIN signin form -->
   <%= form_for :session, url: sessions_path  do |f| %>
 
       <div class="form-group">
@@ -18,4 +19,6 @@
 
       <%= f.submit 'Войти', :name => 'submit', class: "btn btn-lg btn-primary" %>
   <% end %>
+<!-- END signin form -->
+
 </div>
