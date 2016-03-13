@@ -5,7 +5,6 @@ class PetitionsController < ApplicationController
   def index
     if params[:my] && current_user
       @petitions = Petition.where(user_id: current_user.id).reverse
-      @th_actions = "Действия"
       @title = 'Мои петиции'
     else
       @petitions = Petition.all.reverse
@@ -32,7 +31,7 @@ class PetitionsController < ApplicationController
   def destroy
     @petition = Petition.find(params[:id])
     @petition.destroy!
-    redirect_to :back, notice: 'Петиция удалена!'
+    redirect_to :back, notice: 'Петиция удалена'
   end
 
   def show
@@ -52,7 +51,7 @@ class PetitionsController < ApplicationController
   def update
     @petition = Petition.find(params[:id])
     if @petition.update_attributes(petition_params)
-      redirect_to @petition, notice: 'Petition was updated!'
+      redirect_to @petition, notice: 'Петиция обновлена'
     else
       render 'edit'
     end
@@ -70,5 +69,4 @@ class PetitionsController < ApplicationController
   def petition_params
     params.require(:petition).permit(:title, :text) if params[:petition]
   end
-
 end

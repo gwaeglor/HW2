@@ -2,10 +2,9 @@
   <thead>
   <tr>
     <th>Петиция</th>
-    <th>Автор</th>
     <th>Голоса</th>
     <th>Дата создания</th>
-    <th colspan="2">Мои действия</th>
+    <th colspan="2" style="text-align:center;">Мои действия</th>
   </tr>
   </thead>
 
@@ -14,15 +13,10 @@
       <td>
         <%= link_to petition.title, petition_path(petition)%>
       </td>
-
-      <td>
-        <% user = @users.find(id=petition.user_id) %>
-        <%= [user.first_name, user.last_name].join(' ') %>
-      </td>
       <td><%= petition.votes.count %></td>
       <td><%= petition.updated_at.strftime("%d/%m/%Y %I:%M")%></td>
-      <td><%= link_to :Изменить, edit_petition_path(petition)%></td>
-      <td><%= link_to :Удалить, petition_path(petition), method: :delete %></td>
+      <td  style="text-align:center;"><%= link_to :Изменить, edit_petition_path(petition)%></td>
+      <td  style="text-align:center;"><%= link_to :Удалить, petition_path(petition), method: :delete %></td>
     </tr>
   <% end %>
 </table>

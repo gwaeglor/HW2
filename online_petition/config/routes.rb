@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  post 'dovote', to: 'votes#dovote', as: 'dovote'
 
   resources :sessions
   resources :users
+
   resources :petitions do
     member do
       post 'upvote', to: 'petitions#upvote', as: 'upvote'

@@ -1,9 +1,7 @@
-<div class="col-md-6">
-  <div class="col-md-12">
+<div class="col-md-7">
     <% flash.each do |name, msg| %>
-        <div class="label label-danger"><%= msg %></div>
+        <div class="alert alert-danger"><%= msg %></div>
     <% end %>
-  </div>
 
   <h1>Вход</h1>
   <%= form_for :session, url: sessions_path  do |f| %>
@@ -21,4 +19,3 @@
       <%= f.submit 'Войти', :name => 'submit', class: "btn btn-lg btn-primary" %>
   <% end %>
 </div>
-

@@ -1,8 +1,8 @@
-  <div>
+
     <% flash.each do |name, msg| %>
-        <%= msg %>
+        <div class="alert alert-success"><%= msg %></div>
     <% end %>
-  </div>
+
 
   <h1>Петиция</h1>
 
@@ -15,12 +15,13 @@
       <div><%= @petition.text %></div>
       <br>
       <b>Голосов: <%= @petition.votes.count %></b>
-
-      <% if can_vote? %>
+        <br>
+      <% case  %>
+      <% when current_user && can_vote? %>
         <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post, class: "btn btn-primary btn-large" %>
-          <% else %>
-          <br>
-          Вы уже поддержали данную петицию
+        <% when current_user && !can_vote? && (current_user.id == @petition.user_id) %>
+        <% when current_user && !can_vote?  %>
+            Вы уже поддержали данную петицию
       <% end %>
       <br>
 <% end %>

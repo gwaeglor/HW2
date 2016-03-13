@@ -1,8 +1,7 @@
-<div>
+
   <% flash.each do |name, msg| %>
-      <span class="label label-success"><%= msg %></span>
+      <div class="alert alert-success"><%= msg %></div>
   <% end %>
-</div>
 
 <h1><%= @title %></h1>
 

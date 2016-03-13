@@ -14,7 +14,14 @@
 .logo {
   color: #999999;
   font-size: large;
+  a, a:hover, a:visited {
+    text-decoration: none;
+    color: #999999;
+    font-size: large;
+  }
  }
+
+
 .header {
   padding: 10px;
 }

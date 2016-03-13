@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    redirect_to login_url, alert: 'Not authorized' if current_user.nil?
+    redirect_to login_url, alert: 'Пожалуйста, авторизуйтесь' if current_user.nil?
   end
 
   def author
-    redirect_to root_url, alert: 'Not author' unless current_user.id == Petition.find(params[:id]).user_id
+    redirect_to root_url, alert: 'Не автор' unless current_user.id == Petition.find(params[:id]).user_id
   end
 end
