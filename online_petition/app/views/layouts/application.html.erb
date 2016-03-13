@@ -8,20 +8,20 @@
 </head>
 <body>
 
-<div class="col-md-12 well sidebar-nav">
+<div class="col-md-12 well sidebar-nav header">
   <%= render partial: "header" %>
 </div>
 
 <div class="col-md-12">
-  <div class="col-md-8">
+  <div class="col-md-9">
     <%= yield %>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-3">
     <%= render partial: "links_menu" %>
   </div>
 </div>
-<div class="col-md-12">
+<div class="col-md-12 footer">
   <%= render partial: "footer" %>
 </div>
 </body>

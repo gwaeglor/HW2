@@ -5,33 +5,20 @@
     <th>Автор</th>
     <th>Голоса</th>
     <th>Дата создания</th>
-    <% if @th_actions %>
-        <th colspan="2">
-          <%= @th_actions %>
-        </th>
-    <% end %>
   </tr>
   </thead>
 
   <% @petitions.each do |petition| %>
+      <tr>
       <td>
         <%= link_to petition.title, petition_path(petition)%>
       </td>
-
       <td>
         <% user = @users.find(id=petition.user_id) %>
         <%= [user.first_name, user.last_name].join(' ') %>
       </td>
       <td><%= petition.votes.count %></td>
       <td><%= petition.updated_at.strftime("%d/%m/%Y %I:%M")%></td>
-
-      <% if @th_actions %>
-          <td>
-            <%= link_to :Изменить, edit_petition_path(petition)%>
-          </td>
-          <td><%= link_to :Удалить, petition_path(petition), method: :delete %></td>
-
-      <% end %>
       </tr>
   <% end %>
 </table>

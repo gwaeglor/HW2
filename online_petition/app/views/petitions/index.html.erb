@@ -1,4 +1,3 @@
-<div class="col-md-10">
 <div>
   <% flash.each do |name, msg| %>
       <span class="label label-success"><%= msg %></span>
@@ -6,9 +5,9 @@
 </div>
 
 <h1><%= @title %></h1>
+
   <% if @title == 'Мои петиции'  %>
     <%= render "my_petitions_table", layout: "application" %>
   <% else %>
       <%= render "petitions_table", layout: "application" %>
   <% end %>
-</div>
