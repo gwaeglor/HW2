@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :edit, :update, :upvote]
+  before_filter :authorize, only: [:new, :create, :update, :upvote]
   before_filter :author, only: [:edit, :update]
 
   def index
@@ -28,6 +28,12 @@ class PetitionsController < ApplicationController
     @petition = Petition.find(params[:id])
   end
 
+  def destroy
+    @petition = Petition.find(params[:id])
+    @petition.destroy!
+    redirect_to :back, notice: 'Петиция удалена'
+  end
+
   def show
     @petition = Petition.find(params[:id])
   end
@@ -45,17 +51,18 @@ class PetitionsController < ApplicationController
   def update
     @petition = Petition.find(params[:id])
     if @petition.update_attributes(petition_params)
-      redirect_to @petition, notice: 'Petition was updated!'
+      redirect_to @petition, notice: 'Петиция обновлена'
     else
       render 'edit'
     end
   end
 
   def upvote
+    @vote = Vote.new
     @petition = Petition.find(params[:id])
-    @petition.votes.create.save
-    redirect_to @petition, notice: 'Спасибо. Ваш голос был учтен!'
-  end
+    @petition.votes.create(user_id: current_user.id, petition_id: @petition.id).save
+    redirect_to :back, notice: 'Спасибо. Ваш голос был учтен!'
+    end
 
   private
 

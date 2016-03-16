@@ -7,22 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div class="col-md-12 well sidebar-nav">
+<!-- BEGIN header -->
+<div class="col-md-12 well sidebar-nav header">
   <%= render partial: "header" %>
 </div>
+<!-- END header -->
 
+<!-- BEGIN main container -->
 <div class="col-md-12">
-  <div class="col-md-8">
+
+  <!-- BEGIN content -->
+  <div class="col-md-9">
     <%= yield %>
   </div>
+<!-- END content -->
 
-  <div class="col-md-4">
+  <!-- BEGIN menu -->
+  <div class="col-md-3">
     <%= render partial: "links_menu" %>
   </div>
+<!-- END menu -->
 </div>
-<div class="col-md-12">
+<!-- END main container -->
+
+<!-- BEGIN footer -->
+<div class="col-md-12 footer">
   <%= render partial: "footer" %>
 </div>
+<!-- END footer -->
+
 </body>
 </html>

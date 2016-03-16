@@ -1,0 +1,24 @@
+<!-- BEGIN table with current user petitions -->
+<table class="table">
+  <thead>
+  <tr>
+    <th>Петиция</th>
+    <th>Голоса</th>
+    <th>Дата создания</th>
+    <th colspan="2" style="text-align:center;">Мои действия</th>
+  </tr>
+  </thead>
+
+  <% @petitions.each do |petition| %>
+    <tr>
+      <td>
+        <%= link_to petition.title, petition_path(petition)%>
+      </td>
+      <td><%= petition.votes.count %></td>
+      <td><%= petition.updated_at.strftime("%d/%m/%Y %I:%M")%></td>
+      <td  style="text-align:center;"><%= link_to :Изменить, edit_petition_path(petition)%></td>
+      <td  style="text-align:center;"><%= link_to :Удалить, petition_path(petition), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<!-- END table with current user petitions -->

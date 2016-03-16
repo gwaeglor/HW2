@@ -2,3 +2,44 @@
 // Place all the styles related to the PetitionsController controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-credentials {
+  float: left;
+}
+
+.menu-links {
+  line-height: 0.5em
+
+}
+.logo {
+  color: #999999;
+  font-size: large;
+  a, a:hover, a:visited {
+    text-decoration: none;
+    color: #999999;
+    font-size: large;
+  }
+ }
+
+
+.header {
+  padding: 10px;
+}
+
+.footer {
+  left:0px;
+  bottom:0px;
+  height:30px;
+  width:100%;
+  clear: both;
+  position: relative;
+  z-index: 10;
+  margin-top: 6em;
+}
+
+#petition_title, #petition_text  {
+  width: 100%;
+}
+
+textarea { height: auto; }
+

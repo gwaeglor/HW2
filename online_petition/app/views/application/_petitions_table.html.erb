@@ -1,0 +1,26 @@
+<!-- BEGIN table with all petitions -->
+<table class="table">
+  <thead>
+  <tr>
+    <th>Петиция</th>
+    <th>Автор</th>
+    <th>Голоса</th>
+    <th>Дата создания</th>
+  </tr>
+  </thead>
+
+  <% @petitions.each do |petition| %>
+      <tr>
+      <td>
+        <%= link_to petition.title, petition_path(petition)%>
+      </td>
+      <td>
+        <% user = @users.find(id=petition.user_id) %>
+        <%= [user.first_name, user.last_name].join(' ') %>
+      </td>
+      <td><%= petition.votes.count %></td>
+      <td><%= petition.updated_at.strftime("%d/%m/%Y %I:%M")%></td>
+      </tr>
+  <% end %>
+</table>
+<!-- END table with all petitions -->

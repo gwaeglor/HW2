@@ -1,7 +1,6 @@
 <div class="col-md-6">
-
   <h1>Регистрация</h1>
-
+  <!-- BEGIN sign up form -->
   <%= form_for :user, url: users_path  do |f| %>
       <% if @user.errors.any? %>
           <% @user.errors.full_messages.each do |message| %>
@@ -37,5 +36,6 @@
       </div>
 
       <%= f.submit 'Зарегистрироваться', name: 'submit', class: "btn btn-lg btn-primary" %>
-<% end %>
+  <% end %>
+  <!-- END sign up form -->
 </div>
