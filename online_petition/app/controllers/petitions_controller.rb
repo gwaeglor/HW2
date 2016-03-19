@@ -61,6 +61,17 @@ class PetitionsController < ApplicationController
     @vote = Vote.new
     @petition = Petition.find(params[:id])
     @petition.votes.create(user_id: current_user.id, petition_id: @petition.id).save
+
+    case
+    when @petition.win? && !(@petition.become_expired?)
+      UserMailer.winner_petition_email(@petition).deliver_now
+      UserMailer.admin_winner_petition_email(@petition).deliver_now
+    when !(@petition.win?) && (@petition.become_expired?)
+      UserMailer.apologize_petition_email(@petition).deliver_now
+    else
+      UserMailer.petition_voted_by_email(@petition).deliver_now
+    end
+
     redirect_to :back, notice: 'Спасибо. Ваш голос был учтен!'
     end
 
