@@ -49,3 +49,9 @@ end
 gem 'pg'
 
 gem 'figaro'
+
+gem 'redis'
+
+gem 'resque', :require => "resque/server"
+
+
