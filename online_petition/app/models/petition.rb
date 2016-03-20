@@ -12,7 +12,11 @@ class Petition < ActiveRecord::Base
   validates :text, presence: true, length: { maximum: 2000 }
 
   def win?
-    self.votes.count >= WIN_VOTES_NUM
+    self.votes.count >= min_votes_num
+  end
+
+  def min_votes_num
+    WIN_VOTES_NUM
   end
 
   def become_expired?
