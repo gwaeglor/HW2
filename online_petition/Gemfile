@@ -47,3 +47,15 @@ group :development do
 end
 
 gem 'pg'
+
+gem 'figaro'
+
+gem 'redis'
+
+gem 'resque', :require => "resque/server"
+
+gem 'foreman'
+
+gem 'whenever', :require => false
+
+

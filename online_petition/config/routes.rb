@@ -13,4 +13,7 @@ Rails.application.routes.draw do
       post 'upvote', to: 'petitions#upvote', as: 'upvote'
     end
   end
+
+  mount Resque::Server, :at => "/resque"
+
 end

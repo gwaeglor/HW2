@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p>
+  Здравствуйте, <%= @user.email %>
+</p>
+<p>
+  Вашу петицию "<%= @petition.title %>" поддержали. Сейчас у вас <%= @petition.votes.count %> голосов.
+</p>
+</body>
+</html>

@@ -60,9 +60,11 @@ class PetitionsController < ApplicationController
   def upvote
     @vote = Vote.new
     @petition = Petition.find(params[:id])
-    @petition.votes.create(user_id: current_user.id, petition_id: @petition.id).save
+    if @petition.votes.create(user_id: current_user.id, petition_id: @petition.id).save
+      Resque.enqueue(SendEmailJob, @petition.id)
     redirect_to :back, notice: 'Спасибо. Ваш голос был учтен!'
     end
+  end
 
   private
 

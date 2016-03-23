@@ -11,36 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_308_192_601) do
+ActiveRecord::Schema.define(version: 20160308192601) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'petitions', force: :cascade do |t|
-    t.string 'title'
-    t.string 'text'
-    t.integer 'user_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "petitions", force: :cascade do |t|
+    t.string   "title"
+    t.string   "text"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index 'petitions', %w(user_id created_at), name: 'index_petitions_on_user_id_and_created_at', using: :btree
-  add_index 'petitions', ['user_id'], name: 'index_petitions_on_user_id', using: :btree
+  add_index "petitions", ["user_id", "created_at"], name: "index_petitions_on_user_id_and_created_at", using: :btree
+  add_index "petitions", ["user_id"], name: "index_petitions_on_user_id", using: :btree
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email'
-    t.string 'first_name'
-    t.string 'last_name'
-    t.string 'password_digest'
-    t.datetime 'created_at',      null: false
-    t.datetime 'updated_at',      null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table 'votes', force: :cascade do |t|
-    t.integer 'user_id'
-    t.integer 'petition_id'
-    t.datetime 'created_at',  null: false
-    t.datetime 'updated_at',  null: false
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "petition_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_foreign_key 'petitions', 'users'
+  add_foreign_key "petitions", "users"
 end

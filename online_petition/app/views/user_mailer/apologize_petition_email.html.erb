@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<p>
+  Здравствуйте, <%= @user.email %>
+</p>
+<p>
+  К сожалению, ваша петиция "<%= @petition.title %>" собрала только <%= @petition.votes.count %> голосов из необходимых <%= @petition.min_votes_num%>.
+</p>
+</body>
+</html>

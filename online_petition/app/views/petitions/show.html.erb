@@ -16,12 +16,14 @@
   <!-- BEGIN votes block -->
       <b>Голосов: <%= @petition.votes.count %></b>
       <br>
-      <% case  %>
-      <% when current_user && can_vote? %>
-        <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post, class: "btn btn-primary btn-large" %>
-        <% when current_user && !can_vote? && (current_user.id == @petition.user_id) %>
-        <% when current_user && !can_vote?  %>
-            Вы уже поддержали данную петицию
+      <% unless @petition.win? || @petition.become_expired?  %>
+          <% case  %>
+          <% when current_user && can_vote? %>
+            <%= link_to 'Поддержать', upvote_petition_path(@petition), :method=>:post, class: "btn btn-primary btn-large" %>
+            <% when current_user && !can_vote? && (current_user.id == @petition.user_id) %>
+            <% when current_user && !can_vote?  %>
+                Вы уже поддержали данную петицию
+          <% end %>
       <% end %>
   <!-- BEGIN votes block -->
       <br>
